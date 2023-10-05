@@ -1,0 +1,92 @@
+
+    {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "width": 500,
+        "height": 400,
+        "title": "Top 10 countries with highest percentage of popuation using Internet",
+        "data": {
+            "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
+        },
+        "transform": [
+            {
+                "filter": "datum.Year == 2020"
+            },
+            {
+                "window": [{
+                  "op": "rank",
+                  "as": "rank"
+                }],
+                "sort": [{ "field": "Internet_Users(%)", "order": "descending" }]
+              }, {
+                "filter": "datum.rank <= 10"
+              }
+        ],
+        "mark": "circle",
+        "encoding": {
+            "x": {
+                "field": "Cellular_Subscription",
+                "type": "quantitative",
+                "title": "Cellular Subscriptions per 100 people",
+                "axis": {
+                    "tickCount": 7
+                }
+            },
+            "y": {
+                "field": "Broadband_Subscription",
+                "type": "quantitative",
+                "title": "Broadband Subscriptions per 100 people",
+                "axis": {
+                    "tickCount": 6
+                }
+            },
+            "color": {
+                "field": "Entity",
+                "title": "Country",
+                "type": "nominal"
+            },
+            "size": {
+                "field": "Internet_Users",
+                "type": "quantitative",
+                "scale": {"type": "threshold",
+                "domain": [1000000, 2000000, 5000000, 8000000, 15000000],
+                "range": [100, 150, 225, 325, 450, 600]},
+                "legend": {
+                    "format": ".1s"
+                }
+            },
+            "tooltip": [
+                {
+                    "field": "Entity",
+                    "type": "nominal"
+                },
+                {
+                    "field": "Cellular_Subscription",
+                    "title": "Cell subscriptions",
+                    "type": "quantitative",
+                    "format": ","
+                },
+                {
+                    "field": "Internet_Users(%)",
+                    "title": "Population Online (%)",
+                    "type": "quantitative",
+                    "format": ","
+                },
+                {
+                    "field": "Internet_Users",
+                    "type": "quantitative",
+                    "title": "No. Internet Users",
+                    "format": ","
+                },
+                {
+                    "field": "Broadband_Subscription",
+                    "title": "Broadband Subscriptions",
+                    "type": "quantitative",
+                    "format": ","
+                },
+                {
+                    "field": "Year",
+                    "type": "ordinal"
+                }
+            ]
+        }
+    }

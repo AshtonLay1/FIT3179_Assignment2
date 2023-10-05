@@ -2,11 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 450,
-  "title": "Example Plot",
+  "title": "Percentage of People Connected to the Internet",
   "projection": {
     "type": "equalEarth"
   },
   "params": [
+    
     {
       "name": "Year_Filter",
       "value": [
@@ -38,9 +39,8 @@
       ],
       "mark": {
         "type": "geoshape",
-        "fill": "lightgray",
-        "stroke": "white"
-      },
+        "fill": "lightgray"
+            },
       "encoding": {"tooltip": {"field": "note"}}
     },
     {
