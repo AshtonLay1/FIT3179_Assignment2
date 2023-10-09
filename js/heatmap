@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Percentage of Population using Internet Heatmap",
+  "data": {
+    "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Year > 1994"
+    },
+    {
+      "filter": "datum.Entity == 'Australia' || datum.Entity == 'United Kingdom' || datum.Entity == 'United States'|| datum.Entity == 'Canada'|| datum.Entity == 'Germany'|| datum.Entity == 'China'|| datum.Entity == 'Japan'|| datum.Entity == 'Italy'|| datum.Entity == 'Egypt'|| datum.Entity == 'France'|| datum.Entity == 'Spain'|| datum.Entity == 'Greece'|| datum.Entity == 'South Korea'|| datum.Entity == 'Brazil'|| datum.Entity == 'Argentina'|| datum.Entity == 'Vietnam'|| datum.Entity == 'Thailand'|| datum.Entity == 'Kenya'"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "Entity",
+      "type": "ordinal",
+      "title": "Country"
+    },
+    "x": {
+      "field": "Year",
+      "type": "ordinal"
+    }
+  },
+  "layer": [
+    {
+      "mark": "rect",
+      "encoding": {
+        "color": {
+          "field": "Internet_Users(%)",
+          "type": "quantitative",
+          "title": "% of population using internet",
+          "legend": {
+            "direction": "horizontal",
+            "gradientLength": 120
+          }
+        }
+      }
+    },
+    {
+      "mark": "text",
+      "encoding": {
+        "text": {
+          "field": "Internet_Users(%)",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum['Internet_Users(%)'] < 40",
+            "value": "black"
+          },
+          "value": "white"
+        },
+        "tooltip": [
+          {
+            "field": "Entity",
+            "type": "nominal"
+          },
+          {
+            "field": "Internet_Users(%)",
+            "title": "Population Online (%)",
+            "type": "quantitative",
+            "format": ","
+          },
+          {
+            "field": "Internet_Users",
+            "type": "quantitative",
+            "title": "No. Internet Users",
+            "format": ","
+          },
+          {
+            "field": "Year",
+            "type": "ordinal"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "grid": true,
+      "tickBand": "extent"
+    }
+  }
+}

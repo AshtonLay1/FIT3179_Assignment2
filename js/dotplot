@@ -118,7 +118,6 @@
             }
         },
         {
-            "mark": "rule",
             "encoding": {
                 "x": {
                     "aggregate": "mean",
@@ -126,11 +125,30 @@
                 },
                 "color": {
                     "value": "red"
-                },
-                "size": {
-                    "value": 5
                 }
-            }
+            },
+            "layer": [
+                {
+                    "mark": "rule",
+                    "encoding": {
+                        "size": {
+                            "value": 5
+                        }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "align": "right",
+                        "baseline": "bottom",
+                        "dx": -2,
+                        "dy": -2,
+                        "x": "width",
+                        "text": "Global Average",
+                        "size": 16
+                    }
+                }
+            ]
         }
     ]
 }
