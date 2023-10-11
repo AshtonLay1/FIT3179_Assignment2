@@ -344,7 +344,8 @@
                 },
                 "y": {
                     "field": "Internet_Users(%)",
-                    "type": "quantitative"
+                    "type": "quantitative",
+                    "title": "% of Internet Users"
                 }
             },
             "layer": [
