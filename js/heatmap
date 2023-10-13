@@ -1,6 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Percentage of Population using Internet Heatmap",
+  "width": 325,
+  "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
   },
@@ -30,10 +32,12 @@
         "color": {
           "field": "Internet_Users(%)",
           "type": "quantitative",
+          "scale": {"domain": [0,100]},
           "title": "% of population using internet",
           "legend": {
             "direction": "horizontal",
-            "gradientLength": 120
+            "gradientLength": 120,
+            "orient": "bottom"
           }
         }
       }
@@ -44,11 +48,11 @@
         "text": {
           "field": "Internet_Users(%)",
           "type": "quantitative",
-          "format": ".0f"
+          "format": ".0f",
         },
         "color": {
           "condition": {
-            "test": "datum['Internet_Users(%)'] < 40",
+            "test": "datum['Internet_Users(%)'] < 50",
             "value": "black"
           },
           "value": "white"

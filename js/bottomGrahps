@@ -1,0 +1,283 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "params": [
+    {
+      "name": "Year_Filter",
+      "value": [
+        2020
+      ],
+      "bind": {
+        "input": "range",
+        "min": 1980,
+        "max": 2020,
+        "step": 1,
+        "name": "Select year:"
+      }
+    }
+  ],
+  "hconcat": [
+      {
+        "title": "Percentage of People Connected to the Internet 2020",
+      "width": 350,
+      "height": 200,
+      "data": {
+          "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
+      },
+      "layer": [
+          {
+              "transform": [
+                  {
+                      "filter": "datum.Year == Year_Filter"
+                  },
+                  {
+                      "window": [
+                          {
+                              "op": "rank",
+                              "as": "rank"
+                          }
+                      ],
+                      "sort": [
+                          {
+                              "field": "Internet_Users(%)",
+                              "order": "descending"
+                          }
+                      ]
+                  },
+                  {
+                      "filter": "datum.rank <= 10"
+                  }
+              ],
+              "encoding": {
+                  "x": {
+                      "field": "Entity",
+                      "type": "nominal"
+                  },
+                  "y": {
+                      "field": "Internet_Users(%)",
+                      "type": "quantitative",
+                      "title": "% of Internet Users"
+                  },
+                  "color": {
+                        "legend":{
+                            "legendX": 100
+                        },
+                        "condition": {
+                            "selection": "click",
+                            "field": "Entity"
+                        },
+                        "value": "lightgrey"
+                  }
+              },
+              "layer": [
+                  {"mark": "bar",
+                  "selection": {"click": {"encodings": ["color"], "type": "multi"}}},
+                  {
+                      "mark": {"type": "text", "dx": 20, "dy": 0, "angle": 90},
+                      "encoding": {
+                          "color": {"value": "white"},
+                          "text": {"field": "Internet_Users(%)", "type": "quantitative"}
+                        }
+                  }
+              ]
+          },
+          {
+            "transform": [{
+              "filter":"datum.Year == Year_Filter"
+            }],
+              "encoding": {
+                  "y": {
+                      "aggregate": "mean",
+                      "field": "Internet_Users(%)"
+                  },
+                  "color": {
+                      "value": "red"
+                  }
+              },
+              "layer": [
+                  {
+                      "mark": "rule",
+                      "encoding": {
+                          "size": {
+                              "value": 5
+                          }
+                      }
+                  },
+                  {
+                      "mark": {
+                          "type": "text",
+                          "align": "right",
+                          "baseline": "bottom",
+                          "dx": -2,
+                          "dy": -2,
+                          "x": "width",
+                          "text": "Global Average",
+                          "size": 12
+                      }
+                  }
+              ]
+          }
+      ]
+      },
+      {
+        "width": 350,
+        "height": 200,
+        "title": "Top 10 countries with highest Internet User %",
+        "data": {
+            "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
+        },
+        "layer": [
+            {
+                "transform": [
+                    {
+                        "filter": "datum.Year == Year_Filter"
+                    },
+                    {
+                        "window": [
+                            {
+                                "op": "rank",
+                                "as": "rank"
+                            }
+                        ],
+                        "sort": [
+                            {
+                                "field": "Internet_Users(%)",
+                                "order": "descending"
+                            }
+                        ]
+                    },
+                    {
+                        "filter": "datum.rank <= 10"
+                    }
+                ],
+                "mark": "circle",
+                "encoding": {
+                    "x": {
+                        "field": "Cellular_Subscription",
+                        "type": "quantitative",
+                        "title": "Cellular Subscriptions per 100 people",
+                        "axis": {
+                            "tickCount": 7
+                        }
+                    },
+                    "y": {
+                        "field": "Broadband_Subscription",
+                        "type": "quantitative",
+                        "title": "Broadband Subscriptions per 100 people",
+                        "axis": {
+                            "tickCount": 6
+                        }
+                    },
+                    "color": {
+                        "title": "Country",
+                        "type": "nominal",
+                        "condition": {
+                            "selection": "click",
+                            "field": "Entity"
+                        },
+                        "value": "lightgrey"
+                    },
+                    "size": {
+                        "field": "Internet_Users",
+                        "type": "quantitative",
+                        "scale": {
+                            "type": "threshold",
+                            "domain": [
+                                1000000,
+                                2000000,
+                                5000000,
+                                8000000,
+                                15000000
+                            ],
+                            "range": [
+                                100,
+                                150,
+                                225,
+                                325,
+                                450,
+                                600
+                            ]
+                        },
+                        "legend": {
+                            "format": ".1s",
+                            "orient": "none",
+                            "legendX": 780,
+                            "legendY": 160
+                        }
+                    },
+                    "tooltip": [
+                        {
+                            "field": "Entity",
+                            "type": "nominal"
+                        },
+                        {
+                            "field": "Cellular_Subscription",
+                            "title": "Cell subscriptions",
+                            "type": "quantitative",
+                            "format": ","
+                        },
+                        {
+                            "field": "Internet_Users(%)",
+                            "title": "Population Online (%)",
+                            "type": "quantitative",
+                            "format": ","
+                        },
+                        {
+                            "field": "Internet_Users",
+                            "type": "quantitative",
+                            "title": "No. Internet Users",
+                            "format": ","
+                        },
+                        {
+                            "field": "Broadband_Subscription",
+                            "title": "Broadband Subscriptions",
+                            "type": "quantitative",
+                            "format": ","
+                        },
+                        {
+                            "field": "Year",
+                            "type": "ordinal"
+                        }
+                    ]
+                },
+                "selection": {"click": {"encodings": ["color"], "type": "multi"}}
+            },
+            {
+              "transform": [{
+                "filter": "datum.Year == Year_Filter"
+            }],
+                "encoding": {
+                    "x": {
+                        "aggregate": "mean",
+                        "field": "Cellular_Subscription"
+                    },
+                    "color": {
+                        "value": "red"
+                    }
+                },
+                "layer": [
+                    {
+                        "mark": "rule",
+                        "encoding": {
+                            "size": {
+                                "value": 5
+                            }
+                        }
+                    },
+                    {
+                        "mark": {
+                            "type": "text",
+                            "align": "right",
+                            "baseline": "bottom",
+                            "dx": -2,
+                            "dy": -2,
+                            "x": "width",
+                            "text": "Global Average",
+                            "size": 12
+                        }
+                    }
+                ]
+            }
+        ]
+      }
+  ]
+}

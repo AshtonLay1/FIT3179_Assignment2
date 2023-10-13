@@ -1,140 +1,72 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.14.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+  <!-- CSS file -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
+    integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css" />
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+<script type="text/javascript">
+
+          var spec1 = "js/Final_choroMap";
+          vegaEmbed('#vis1', spec1,{"actions":false}).then(function(result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+          }).catch(console.error);
+
+          var spec2 = "js/annotate";
+          vegaEmbed('#vis2', spec2,{"actions":false}).then(function(result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+          }).catch(console.error);
+
+          var spec3 = "js/bottomGrahps";
+          vegaEmbed('#vis3', spec3,{"actions":false}).then(function(result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+          }).catch(console.error);
+
+          var spec4 = "js/barChart";
+          vegaEmbed('#vis4', spec4,{"actions":false}).then(function(result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+          }).catch(console.error);
+        </script>
+
+        
 </head>
+
 <body>
-  <div id="vis"/>
-  <script>
-    const spec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Percentage of People Connected to the Internet 2020",
-  "width": 800,
-  "height": 400,
-  "projection": {"type": "equalEarth"},
-  "data": {
-    "name": "map",
-    "url": "js/Data/ne_110m_admin_0_countries.json",
-    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-  },
-  "transform": [
-    {
-      "lookup": "properties.ISO_A3",
-      "from": {
-        "data": {"url": "js/Data/test.csv"},
-        "key": "Code",
-        "fields": [
-          "ID",
-          "Entity",
-          "Code",
-          "Year",
-          "Cellular_Subscription",
-          "Internet_Users(%)",
-          "Internet_Users",
-          "Broadband_Subscription"
-        ]
-      }
-    },
-    {"filter": "datum.Year == 2020"}
-  ],
-  "params": [
-    {
-      "name": "selecta",
-      "value": [2020],
-      "bind": {
-        "input": "range",
-        "min": 1980,
-        "max": 2020,
-        "step": 1,
-        "name": "Select year:"
-      }
-    }
-  ],
-  "mark": {"type": "geoshape"},
-  "encoding": {
-    "color": {
-      "field": "Internet_Users(%)",
-      "type": "quantitative",
-      "scale": {
-        "type": "linear",
-        "range": [
-          "#ffffcc",
-          "#ffeda0",
-          "#fed976",
-          "#feb24c",
-          "#fd8d3c",
-          "#fc4e2a",
-          "#e31a1c",
-          "#bd0026",
-          "#800026"
-        ],
-        "domain": [0, 100]
-      }
-    },
-    "tooltip": [
-      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {
-        "field": "Internet_Users(%)",
-        "type": "quantitative",
-        "title": "Internet users (%)"
-      },
-      {
-        "field": "Internet_Users",
-        "type": "quantitative",
-        "title": "No. of Internet Users"
-      }
-    ]
-  },
-  "config": {}
-};
-    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
-  </script>
+  <div class="page">
+    <div class="pure-g">
+      <div class="pure-u-1">
+        <h1>How Connected is the World?</h1>
+        <div id="vis1" class="vis-container"></div>
+        <h2>oncisoanioc</h2 >
+        <p1>oncisoanionioniocnsaoncsoanciosanoiscnoiscnsoiancosancsoanc</p1>
+        <p1>oncisoanionioniocnsaoncsoanciosanoiscnoiscnsoiancosancsoanc</p1>
+        <p1>oncisoanionioniocnsaoncsoanciosanoiscnoiscnsoiancosancsoanc</p1>
+      </div>
+
+      <div class="pure-u-1-2">
+        <div id="vis2" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <h2>Title</h2>
+        <p1>add some text here </p1>
+        <p1>I could as some text here for lolsit starts from here </p1>
+
+      </div>
+
+      <div class="pure-u-1">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+
+    </div>
+  </div>
 </body>
+
 </html>
-
-
-
-{
-  "transform": [
-      {
-          "window": [
-              {
-                  "op": "rank",
-                  "as": "ranking"
-              }
-          ],
-          "sort": [
-              {
-                  "field": "Internet_Users(%)",
-                  "order": "descending"
-              }
-          ]
-      },
-      {
-          "filter": "datum.ranking == 1"
-      },
-      {
-          "calculate": "'The worst earthquake of; the selected period: ' + datum['Entity']",
-          "as": "text_annotation_raw"
-      },
-      {
-          "calculate": "split(datum.text_annotation_raw, ';')",
-          "as": "text_annotation"
-      }
-  ],
-  "mark": {
-      "type": "text",
-      "align": "right",
-      "dx": -8,
-      "dy": -8,
-      "baseline": "middle",
-      "fontStyle": "italic"
-  },
-  "encoding": {
-      "text": {
-          "field": "text_annotation"
-      }
-  }
-}

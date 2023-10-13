@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 500,
-    "height": 400,
+    "width": 250,
+    "height": 200,
     "title": "Top 10 countries with highest percentage of popuation using Internet",
     "data": {
         "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
@@ -75,10 +75,7 @@
                         ]
                     },
                     "legend": {
-                        "format": ".1s",
-                        "orient": "none",
-                        "legendX": 810,
-                        "legendY": 650
+                        "format": ".1s"
                     }
                 },
                 "tooltip": [

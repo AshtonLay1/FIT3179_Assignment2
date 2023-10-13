@@ -1,8 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Percentage of People Connected to the Internet 2020",
-    "width": 800,
-    "height": 400,
+    "width": 350,
+    "height": 200,
     "data": {
         "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
     },
