@@ -49,6 +49,10 @@
                         },
                         {
                             "filter": "datum.rank <= 10"
+                        },
+                        {
+                            "calculate": "' ' + datum['Internet_Users(%)'] + '%'",
+                            "as": "percent"
                         }
                     ],
                     "encoding": {
@@ -76,7 +80,41 @@
                                 "field": "Entity"
                             },
                             "value": "lightgrey"
-                        }
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Entity",
+                                "type": "nominal"
+                            },
+                            {
+                                "field": "Cellular_Subscription",
+                                "title": "Cell subscriptions",
+                                "type": "quantitative",
+                                "format": ","
+                            },
+                            {
+                                "field": "Internet_Users(%)",
+                                "title": "Population Online (%)",
+                                "type": "quantitative",
+                                "format": ","
+                            },
+                            {
+                                "field": "Internet_Users",
+                                "type": "quantitative",
+                                "title": "No. Internet Users",
+                                "format": ","
+                            },
+                            {
+                                "field": "Broadband_Subscription",
+                                "title": "Broadband Subscriptions",
+                                "type": "quantitative",
+                                "format": ","
+                            },
+                            {
+                                "field": "Year",
+                                "type": "ordinal"
+                            }
+                        ]
                     },
                     "layer": [
                         {
@@ -102,8 +140,7 @@
                                     "value": "white"
                                 },
                                 "text": {
-                                    "field": "Internet_Users(%)",
-                                    "type": "quantitative"
+                                    "field": "percent"
                                 }
                             }
                         }
