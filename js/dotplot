@@ -13,6 +13,10 @@
                     "filter": "datum.Year == 2020"
                 },
                 {
+                    "calculate": "datum['Internet_Users(%)']/100",
+                      "as": "fixOrder"
+                          },
+                {
                     "window": [
                         {
                             "op": "rank",
@@ -21,16 +25,16 @@
                     ],
                     "sort": [
                         {
-                            "field": "Internet_Users(%)",
+                            "field": "fixOrder",
                             "order": "descending"
                         }
                     ]
                 },
+                
                 {
                     "filter": "datum.rank <= 10"
                 }
             ],
-            "mark": "circle",
             "encoding": {
                 "x": {
                     "field": "Cellular_Subscription",
@@ -112,7 +116,30 @@
                         "type": "ordinal"
                     }
                 ]
+            },
+            "layer": [
+                {"mark": "circle"},
+                {"transform": [
+                    {
+                    "filter": "datum.rank == 1"
+                    },
+                    {"calculate": "'highest % of Internet Users: ;'+ datum['Entity']",
+                "as": "text_annotation_raw"},
+                {"calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"}
+                ],
+                "mark":{
+                    "type": "text",
+                    "dx":-90
+                },
+                "encoding": {
+                    "text": {
+                        "field": "text_annotation"                      },
+                      "size":{"value": 12},
+                      "color":{"value": "black"}
+                }
             }
+            ]
         },
         {
             "encoding": {

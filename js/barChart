@@ -10,7 +10,7 @@
         {
             "transform": [
                 {
-                    "filter": "datum.Year == 2020 && datum['Internet_Users(%)'] > 0"
+                    "filter": "datum.Year == 2012 "
                 },
                 {
                     "window": [
@@ -27,7 +27,7 @@
                     ]
                 },
                 {
-                    "filter": "datum.rank <= 15"
+                    "filter": "datum.rank <= 10"
                 }
             ],
             "encoding": {
