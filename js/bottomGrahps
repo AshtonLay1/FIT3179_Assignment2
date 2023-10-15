@@ -17,7 +17,9 @@
     ],
     "hconcat": [
         {
-            "title": "Percentage of People Connected to the Internet 2020",
+            "title": {
+                "text":"Percentage of People Connected to the Internet 2020",
+                "font": "Georgia"},
             "width": 350,
             "height": 200,
             "data": {
@@ -189,7 +191,9 @@
         {
             "width": 350,
             "height": 200,
-            "title": "Top 10 countries with highest Internet User %",
+            "title": {
+                "text":"Top 10 countries with highest Internet User %",
+                "font": "Georgia"},
             "data": {
                 "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
             },
@@ -255,12 +259,17 @@
                             "type": "nominal",
                             "condition": {
                                 "selection": "click",
-                                "field": "Entity"
+                                "field": "Entity",
+                                "title": "Country"
                             },
-                            "value": "lightgrey"
+                            "value": "lightgrey",
+                            "legend":{
+                                "title": "Country"
+                            }
                         },
                         "size": {
                             "field": "Internet_Users",
+                            "title": "Internet Users",
                             "type": "quantitative",
                             "scale": {
                                 "type": "threshold",
@@ -350,7 +359,8 @@
                             ],
                             "mark": {
                                 "type": "text",
-                                "dx": -75
+                                "dx": -75,
+                                "font": "serif"
                             },
                             "encoding": {
                                 "text": {

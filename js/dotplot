@@ -2,7 +2,9 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 250,
     "height": 200,
-    "title": "Top 10 countries with highest percentage of popuation using Internet",
+    "title": {
+        "text":"Top 10 countries with highest percentage of popuation using Internet",
+        "font": "Georgia"},
     "data": {
         "url": "https://raw.githubusercontent.com/AshtonLay1/FIT3179_Assignment2/main/dataset/Final.csv"
     },
@@ -130,7 +132,8 @@
                 ],
                 "mark":{
                     "type": "text",
-                    "dx":-90
+                    "dx":-90,
+                    "font":"serif"
                 },
                 "encoding": {
                     "text": {

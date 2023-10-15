@@ -2,7 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width":840,
   "height": 450,
-  "title": "Percentage of People Connected to the Internet",
+  "title": {
+    "text": "Percentage of People Connected to the Internet",
+    "font": "Georgia"
+  },
   "projection": {
     "type": "equalEarth"
   },
@@ -122,6 +125,9 @@
               0,
               100
             ]
+          },
+          "legend": {
+            "title": "Internet Users(%)"
           }
         },
         "tooltip": [
