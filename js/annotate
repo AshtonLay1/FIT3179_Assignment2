@@ -1,6 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Percentage of Population using Internet Heatmap",
+    "title": {
+      "text":"Percentage of Population using Internet Heatmap",
+      "font": "Georgia"},
     "width": 345,
     "height": 400,
     "data": {

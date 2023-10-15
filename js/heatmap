@@ -50,7 +50,7 @@
         "text": {
           "field": "Internet_Users(%)",
           "type": "quantitative",
-          "format": ".0f",
+          "format": ".0f"
         },
         "color": {
           "condition": {
